@@ -1,19 +1,21 @@
 // App.js
-import React from "react";
-import { Provider } from "react-redux";
-import store from "./store";
-import UserForm from "./userFroms.jsx";
-import UserDetails from "./UserDetails.jsx";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import AddUserPage from './AddUserPage';
+import UserDetailsPage from './UserDetailsPage';
 
 const App = () => {
     return (
-        <Provider store={store}>
+        <Router>
             <div>
-                <h1>User Information</h1>
-                <UserForm />
-                <UserDetails />
+                <Routes>
+                    <Route path="/user" element={<AddUserPage />} />
+                    <Route path="/details" element={<UserDetailsPage />} />
+                    {/* Добавляем маршрут по умолчанию для корневого пути */}
+                    <Route path="/" element={<Navigate to="/user" />} />
+                </Routes>
             </div>
-        </Provider>
+        </Router>
     );
 };
 
